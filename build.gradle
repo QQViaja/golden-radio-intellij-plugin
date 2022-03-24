@@ -1,0 +1,33 @@
+plugins {
+    id 'org.jetbrains.intellij' version '1.4.0'
+    id 'java'
+    id 'groovy'
+}
+
+group 'com.qqviaja.plugins'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+dependencies {
+    implementation 'org.codehaus.groovy:groovy-all:3.0.5'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version = '2021.3.2'
+}
+patchPluginXml {
+    changeNotes = """
+    1.0: Initial release."""
+}
+test {
+    useJUnitPlatform()
+}
