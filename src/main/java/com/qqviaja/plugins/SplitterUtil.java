@@ -27,7 +27,7 @@ import static java.util.Collections.emptySet;
  */
 public class SplitterUtil {
 
-    public final static Key<Boolean> CURRENT_STATE_IS_MAXIMIZED_KEY = Key.create("CURRENT_STATE_IS_MAXIMIZED");
+    public final static Key<Boolean> CURRENT_STATE_IS_RADIO_KEY = Key.create("CURRENT_STATE_IS_GOLDEN_RADIO");
 
     public static final float GOLDEN_RADIO_PROPORTION = 0.618f;
 
@@ -47,13 +47,11 @@ public class SplitterUtil {
             if (parent instanceof Splitter && UIUtil.isClientPropertyTrue(parent, EditorsSplitters.SPLITTER_KEY)) {
                 final Splitter splitter = (Splitter) parent;
                 if (splitter.getFirstComponent() == comp) {
-                    if (splitter.getProportion() < GOLDEN_RADIO_PROPORTION) {
+                    if (splitter.getProportion() != GOLDEN_RADIO_PROPORTION) {
                         set.add(new Pair<>(splitter, true));
                     }
                 } else {
-                    if (splitter.getProportion() > 1 - GOLDEN_RADIO_PROPORTION) {
-                        set.add(new Pair<>(splitter, false));
-                    }
+                    set.add(new Pair<>(splitter, false));
                 }
             }
             comp = parent;
@@ -71,14 +69,13 @@ public class SplitterUtil {
         var set = new HashSet<Splitter>();
         var splitters = ComponentUtil.getParentOfType(EditorsSplitters.class, editor.getComponent());
         while (splitters != null) {
-            var candidate = ComponentUtil.getParentOfType(EditorsSplitters. class, splitters.getParent());
+            var candidate = ComponentUtil.getParentOfType(EditorsSplitters.class, splitters.getParent());
             if (splitters == candidate) {
                 break;
             }
             splitters = candidate;
         }
         if (splitters != null) {
-            var splitterList = UIUtil.findComponentsOfType(splitters, Splitter.class);
             return UIUtil.findComponentsOfType(splitters, Splitter.class)
                     .stream().filter(splitter -> UIUtil.isClientPropertyTrue(splitter, EditorsSplitters.SPLITTER_KEY))
                     .collect(Collectors.toSet());
