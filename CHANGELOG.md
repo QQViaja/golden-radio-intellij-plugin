@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 ### Added
+- Support auto Golden Radio.
 
 ### Changed
 
