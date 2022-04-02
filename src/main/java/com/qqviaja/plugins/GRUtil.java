@@ -12,6 +12,8 @@ import com.intellij.openapi.util.Key;
 import com.intellij.openapi.util.Pair;
 import com.intellij.ui.ComponentUtil;
 import com.intellij.util.ui.UIUtil;
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.util.HashSet;
@@ -25,12 +27,13 @@ import static java.util.Collections.emptySet;
  *
  * @author Kimi Chen
  */
-public class SplitterUtil {
+public class GRUtil {
 
     public final static Key<Boolean> CURRENT_STATE_IS_RADIO_KEY = Key.create("CURRENT_STATE_IS_GOLDEN_RADIO");
 
-    public static final float GOLDEN_RADIO_PROPORTION = 0.618f;
-
+    @NotNull
+    @NonNls
+    public static final String GR_CONFIG = "GRSettings.xml";
 
     public static Set<Pair<Splitter, Boolean>> getSplittersToGoldenRadio(Project project, Editor editor) {
         final FileEditorManager instance = FileEditorManager.getInstance(project);
@@ -47,7 +50,8 @@ public class SplitterUtil {
             if (parent instanceof Splitter && UIUtil.isClientPropertyTrue(parent, EditorsSplitters.SPLITTER_KEY)) {
                 final Splitter splitter = (Splitter) parent;
                 if (splitter.getFirstComponent() == comp) {
-                    if (splitter.getProportion() != GOLDEN_RADIO_PROPORTION) {
+                    final float proportion = GRSettingsHolder.GRSettings.getSettings().getProportion();
+                    if (splitter.getProportion() != proportion && proportion > 0) {
                         set.add(new Pair<>(splitter, true));
                     }
                 } else {

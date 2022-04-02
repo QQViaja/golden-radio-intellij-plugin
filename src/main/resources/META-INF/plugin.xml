@@ -13,6 +13,14 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <applicationService serviceImplementation="com.qqviaja.plugins.GRSettingsHolder"/>
+
+        <applicationConfigurable groupId="tools" id="golden.radio.id"
+                                 bundle="GRBundle"
+                                 key="configurable.golden.radio.configurable.display.name"
+                                 instance="com.qqviaja.plugins.GoldenRadioConfigurable">
+        </applicationConfigurable>
+
     </extensions>
 
     <actions>

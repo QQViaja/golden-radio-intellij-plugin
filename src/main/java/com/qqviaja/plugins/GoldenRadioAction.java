@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 import java.util.Set;
 
-import static com.qqviaja.plugins.SplitterUtil.CURRENT_STATE_IS_RADIO_KEY;
+import static com.qqviaja.plugins.GRUtil.CURRENT_STATE_IS_RADIO_KEY;
 import static java.util.Collections.emptySet;
 
 /**
@@ -26,17 +26,17 @@ public class GoldenRadioAction extends DumbAwareAction {
         getTemplatePresentation().setText(GRBundle.message("action.golden.radio.editor") + "/" + IdeBundle.message("action.normalize.splits"));
     }
 
-
     @Override
     public void actionPerformed(AnActionEvent e) {
+        final float proportion = GRSettingsHolder.GRSettings.getSettings().getProportion();
         var project = e.getProject();
         Optional.ofNullable(project).ifPresent(p -> {
             final Set<Pair<Splitter, Boolean>> splittersToGoldenRadio = getSplittersToGoldenRadio(e);
             if (splittersToGoldenRadio.isEmpty()) {
-                SplitterUtil.getSplittersToNormalize(e).forEach(splitter -> splitter.setProportion(.5f));
+                GRUtil.getSplittersToNormalize(e).forEach(splitter -> splitter.setProportion(.5f));
             } else {
                 splittersToGoldenRadio.forEach(splitter ->
-                        splitter.first.setProportion(splitter.getSecond() ? SplitterUtil.GOLDEN_RADIO_PROPORTION : (1 - SplitterUtil.GOLDEN_RADIO_PROPORTION)));
+                        splitter.first.setProportion(splitter.getSecond() ? proportion : (1 - proportion)));
             }
         });
     }
@@ -54,7 +54,7 @@ public class GoldenRadioAction extends DumbAwareAction {
             return;
         }
 
-        final Set<Splitter> splittersToNormalize = SplitterUtil.getSplittersToNormalize(e);
+        final Set<Splitter> splittersToNormalize = GRUtil.getSplittersToNormalize(e);
         if (!splittersToNormalize.isEmpty()) {
             presentation.setText(IdeBundle.message("action.normalize.splits"));
             presentation.putClientProperty(CURRENT_STATE_IS_RADIO_KEY, true);
@@ -69,6 +69,6 @@ public class GoldenRadioAction extends DumbAwareAction {
         if (project == null || editor == null) {
             return emptySet();
         }
-        return SplitterUtil.getSplittersToGoldenRadio(project, editor);
+        return GRUtil.getSplittersToGoldenRadio(project, editor);
     }
 }
