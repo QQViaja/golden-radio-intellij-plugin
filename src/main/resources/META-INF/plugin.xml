@@ -11,8 +11,9 @@
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
 
+    <resource-bundle>GRBundle</resource-bundle>
+
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
         <applicationService serviceImplementation="com.qqviaja.plugins.GRSettingsHolder"/>
 
         <applicationConfigurable groupId="tools" id="golden.radio.id"
@@ -20,14 +21,12 @@
                                  key="configurable.golden.radio.configurable.display.name"
                                  instance="com.qqviaja.plugins.GoldenRadioConfigurable">
         </applicationConfigurable>
-
     </extensions>
 
     <actions>
-        <!-- Add your actions here -->
         <action id="GoldenRadioAction" class="com.qqviaja.plugins.GoldenRadioAction" text="Golden Radio Action"
                 description="Golden radio action">
-            <add-to-group group-id="EditorTabsGroup" anchor="after" relative-to-action="FocusEditor"/>
+            <add-to-group group-id="EditorTabsGroup" anchor="after" relative-to-action="MaximizeEditorInSplit"/>
         </action>
     </actions>
 </idea-plugin>
