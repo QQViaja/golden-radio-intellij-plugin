@@ -2,7 +2,7 @@ package com.qqviaja.plugins
 
 import com.intellij.openapi.options.BoundSearchableConfigurable
 import com.intellij.openapi.ui.DialogPanel
-import com.intellij.ui.layout.*
+import com.intellij.ui.dsl.builder.*
 import com.qqviaja.plugins.GRBundle.message
 import javax.swing.JLabel
 
@@ -20,34 +20,26 @@ class GoldenRadioConfigurable : BoundSearchableConfigurable(
 
     override fun createPanel(): DialogPanel {
         return panel {
-            titledRow(message("settings.golden.radio.name")) {
-                row {
-                    cell(isFullWidth = true) {
-                        label(message("settings.proportion.name"))
-                        slider(0, GRSettingsHolder.CONTEXT_RANGE_MODES.size - 1, 1, 1)
-                            .labelTable {
-                                GRSettingsHolder.CONTEXT_RANGE_MODES.forEachIndexed { index, _ ->
-                                    put(index, JLabel(GRSettingsHolder.CONTEXT_RANGE_MODE_LABELS[index]))
-                                }
-                            }
-                            .withValueBinding(
-                                PropertyBinding(
-                                    {
-                                        GRSettingsHolder.CONTEXT_RANGE_MODES.indexOfFirst { it == grSettings.proportion }
-                                            .coerceAtLeast(0)
-                                    },
-                                    { grSettings.proportion = GRSettingsHolder.CONTEXT_RANGE_MODES[it] }
-                                )
-                            )
-                    }
-                }
-                row {
-                    checkBox(
-                        message("settings.switch.tabs.between.golden.radio.default.max"),
-                        grSettings::switchTabsBetweenGrDefaultMax
-                    )
-                }
+            row(message("settings.golden.radio.name")) {}.layout(RowLayout.PARENT_GRID)
+
+            row {
+                label(message("settings.proportion.name"))
+                slider(0, GRSettingsHolder.CONTEXT_RANGE_MODES.size - 1, 1, 1)
+                    .labelTable(
+                        GRSettingsHolder.CONTEXT_RANGE_MODES.mapIndexed { index: Int, _: Float ->
+                            index to JLabel(GRSettingsHolder.CONTEXT_RANGE_MODE_LABELS[index])
+                        }.toMap()
+                    ).bindValue(({
+                        GRSettingsHolder.CONTEXT_RANGE_MODES.indexOfFirst { it == grSettings.proportion }
+                            .coerceAtLeast(0)
+                    }), ({ grSettings.proportion = GRSettingsHolder.CONTEXT_RANGE_MODES[it] }))
             }
+            row {
+                checkBox(
+                    message("settings.switch.tabs.between.golden.radio.default.max")
+                ).bindSelected(grSettings::switchTabsBetweenGrDefaultMax)
+            }
+
         }
     }
 }
