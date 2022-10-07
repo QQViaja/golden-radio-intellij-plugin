@@ -35,7 +35,8 @@ class GRSettingsHolder : PersistentStateComponent<GRSettingsHolder.State> {
     data class SharedSettings(
         // Fragments settings
         var PROPORTION: Float = 0.618f,
-        var SWITCH_TABS_BETWEEN_GR_DEFAULT_MAX: Boolean = false
+        var SWITCH_TABS_BETWEEN_GR_DEFAULT_MAX: Boolean = false,
+        var AUTO_TOGGLE: Boolean = true
     )
 
 
@@ -52,6 +53,12 @@ class GRSettingsHolder : PersistentStateComponent<GRSettingsHolder.State> {
             get() = SHARED_SETTINGS.SWITCH_TABS_BETWEEN_GR_DEFAULT_MAX
             set(value) {
                 SHARED_SETTINGS.SWITCH_TABS_BETWEEN_GR_DEFAULT_MAX = value
+            }
+
+        var autoToggle: Boolean
+            get() = SHARED_SETTINGS.AUTO_TOGGLE
+            set(value) {
+                SHARED_SETTINGS.AUTO_TOGGLE = value
             }
 
         var proportion: Float

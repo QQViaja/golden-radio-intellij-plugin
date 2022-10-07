@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 import java.util.Set;
 
+import static com.qqviaja.plugins.GRSettingsHolder.GRSettings.getSettings;
 import static com.qqviaja.plugins.GRUtil.CURRENT_STATE_IS_RADIO_KEY;
 import static java.util.Collections.emptySet;
 
@@ -28,7 +29,7 @@ public class GoldenRadioAction extends DumbAwareAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        final float proportion = GRSettingsHolder.GRSettings.getSettings().getProportion();
+        final float proportion = getSettings().getProportion();
         var project = e.getProject();
         Optional.ofNullable(project).ifPresent(p -> {
             final Set<Pair<Splitter, Boolean>> splittersToGoldenRadio = getSplittersToGoldenRadio(e);

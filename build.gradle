@@ -27,11 +27,7 @@ compileKotlin {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
     implementation "org.jetbrains.kotlin:kotlin-reflect"
-    implementation 'org.codehaus.groovy:groovy-all:3.0.13'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 }
 
 intellij {
@@ -51,8 +47,9 @@ changelog {
 }
 
 patchPluginXml {
-    sinceBuild = "211"
-    changeNotes = changelog.get(project.version).toHTML()
+    sinceBuild.set("211")
+    untilBuild.set("")
+    changeNotes.set(changelog.get(project.version).toHTML())
 }
 
 publishPlugin {

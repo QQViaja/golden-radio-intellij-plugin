@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 ### Added
+- Support auto toggle editor.
 
 ### Changed
 
@@ -10,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- Remove deprecated APIs.
 
 ### Security
 

@@ -39,7 +39,11 @@ class GoldenRadioConfigurable : BoundSearchableConfigurable(
                     message("settings.switch.tabs.between.golden.radio.default.max")
                 ).bindSelected(grSettings::switchTabsBetweenGrDefaultMax)
             }
-
+            row {
+                checkBox(
+                    message("settings.auto.toggle")
+                ).bindSelected(grSettings::autoToggle)
+            }
         }
     }
 }
