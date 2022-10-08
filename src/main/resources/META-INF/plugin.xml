@@ -31,7 +31,8 @@
         <action id="GoldenRadioAction" class="com.qqviaja.plugins.GoldenRadioAction" text="Golden Radio Action"
                 description="Golden radio action">
             <add-to-group group-id="EditorTabsGroup" anchor="after" relative-to-action="MaximizeEditorInSplit"/>
-            <keyboard-shortcut first-keystroke="ctrl x" second-keystroke="ctrl g" keymap="Emacs"/>
+            <keyboard-shortcut first-keystroke="control shift G" keymap="$default"/>
+            <keyboard-shortcut first-keystroke="control shift G" keymap="Emacs"/>
         </action>
     </actions>
 </idea-plugin>

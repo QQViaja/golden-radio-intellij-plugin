@@ -10,6 +10,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Splitter;
 import com.intellij.openapi.util.Key;
 import com.intellij.openapi.util.Pair;
+import com.intellij.ui.ClientProperty;
 import com.intellij.ui.ComponentUtil;
 import com.intellij.util.ui.UIUtil;
 import org.jetbrains.annotations.NonNls;
@@ -38,7 +39,6 @@ public class GRUtil {
     public static Set<Pair<Splitter, Boolean>> getSplittersToGoldenRadio(Project project, Editor editor) {
         final FileEditorManager instance = FileEditorManager.getInstance(project);
         if (!(instance instanceof FileEditorManagerImpl)) {
-
             return emptySet();
         }
         final FileEditorManagerImpl editorManager = (FileEditorManagerImpl) instance;
@@ -47,7 +47,7 @@ public class GRUtil {
         Component comp = editor.getComponent();
         while (comp != editorManager.getMainSplitters()) {
             var parent = comp.getParent();
-            if (parent instanceof Splitter && UIUtil.isClientPropertyTrue(parent, EditorsSplitters.SPLITTER_KEY)) {
+            if (parent instanceof Splitter && ClientProperty.isTrue(parent, EditorsSplitters.SPLITTER_KEY)) {
                 final Splitter splitter = (Splitter) parent;
                 if (splitter.getFirstComponent() == comp) {
                     final float proportion = GRSettingsHolder.GRSettings.getSettings().getProportion();
@@ -81,7 +81,7 @@ public class GRUtil {
         }
         if (splitters != null) {
             return UIUtil.findComponentsOfType(splitters, Splitter.class)
-                    .stream().filter(splitter -> UIUtil.isClientPropertyTrue(splitter, EditorsSplitters.SPLITTER_KEY))
+                    .stream().filter(splitter -> ClientProperty.isTrue(splitter, EditorsSplitters.SPLITTER_KEY))
                     .collect(Collectors.toSet());
         }
         return set;
