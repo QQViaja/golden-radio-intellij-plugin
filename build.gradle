@@ -11,7 +11,7 @@ plugins {
 apply plugin: 'org.jetbrains.changelog'
 
 group 'com.qqviaja.plugins'
-version '1.4'
+version '1.5'
 
 repositories {
     mavenCentral()
@@ -36,7 +36,7 @@ intellij {
 
 
 changelog {
-    version = "1.4"
+    version = "1.5"
     path = "${project.projectDir}/CHANGELOG.md"
     header = "[${-> version.get()}] - ${new SimpleDateFormat("yyyy-MM-dd").format(new Date())}"
     headerParserRegex = ~/(\d+\.\d+)/
@@ -53,9 +53,5 @@ patchPluginXml {
 }
 
 publishPlugin {
-    token = System.getenv("ORG_GRADLE_PROJECT_intellijPublishToken")
-}
-
-test {
-    useJUnitPlatform()
+    token.set(System.getenv("ORG_GRADLE_PROJECT_intellijPublishToken"))
 }
