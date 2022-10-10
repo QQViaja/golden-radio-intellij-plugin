@@ -13,6 +13,22 @@
 
 ### Security
 
+## [1.6] - 2022-10-10
+### Added
+- Support auto toggle editor.
+
+### Changed
+- Change support to 221+ for compatibility issues.
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Remove deprecated APIs.
+
+### Security
+
 ## [1.5] - 2022-10-08
 ### Added
 - Support auto toggle editor.

@@ -11,7 +11,7 @@ plugins {
 apply plugin: 'org.jetbrains.changelog'
 
 group 'com.qqviaja.plugins'
-version '1.5'
+version '1.6'
 
 repositories {
     mavenCentral()
@@ -36,7 +36,7 @@ intellij {
 
 
 changelog {
-    version = "1.5"
+    version = "1.6"
     path = "${project.projectDir}/CHANGELOG.md"
     header = "[${-> version.get()}] - ${new SimpleDateFormat("yyyy-MM-dd").format(new Date())}"
     headerParserRegex = ~/(\d+\.\d+)/
@@ -47,7 +47,7 @@ changelog {
 }
 
 patchPluginXml {
-    sinceBuild.set("211")
+    sinceBuild.set("221")
     untilBuild.set("")
     changeNotes.set(changelog.get(project.version).toHTML())
 }
