@@ -1,8 +1,8 @@
 import java.text.SimpleDateFormat
 
 plugins {
-    id 'org.jetbrains.intellij' version '1.9.0'
-    id "org.jetbrains.kotlin.jvm" version "1.7.20"
+    id 'org.jetbrains.intellij' version '1.17.0'
+    id "org.jetbrains.kotlin.jvm" version "1.9.22"
     id 'org.jetbrains.changelog' version '1.3.1'
     id 'java'
     id 'groovy'
@@ -11,19 +11,19 @@ plugins {
 apply plugin: 'org.jetbrains.changelog'
 
 group 'com.qqviaja.plugins'
-version '1.6'
+version '1.7'
 
 repositories {
     mavenCentral()
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_11
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_17
 }
 
 dependencies {
@@ -31,12 +31,13 @@ dependencies {
 }
 
 intellij {
-    version = '2022.1.1'
+    version = '2024.1'
+    type.set("IC")
 }
 
 
 changelog {
-    version = "1.6"
+    version = "1.7"
     path = "${project.projectDir}/CHANGELOG.md"
     header = "[${-> version.get()}] - ${new SimpleDateFormat("yyyy-MM-dd").format(new Date())}"
     headerParserRegex = ~/(\d+\.\d+)/
@@ -47,7 +48,7 @@ changelog {
 }
 
 patchPluginXml {
-    sinceBuild.set("221")
+    sinceBuild.set("241")
     untilBuild.set("")
     changeNotes.set(changelog.get(project.version).toHTML())
 }

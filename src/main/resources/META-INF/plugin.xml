@@ -11,15 +11,17 @@
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
 
-    <resource-bundle>GRBundle</resource-bundle>
+    <resource-bundle>GoldenRadioBundle</resource-bundle>
+    
+<!--    <idea-version since-build="241.0"/>-->
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.qqviaja.plugins.GRSettingsHolder"/>
+        <applicationService serviceImplementation="com.qqviaja.plugins.model.GoldenRadioSettingsHolder"/>
 
         <applicationConfigurable groupId="tools" id="golden.radio.id"
-                                 bundle="GRBundle"
+                                 bundle="GoldenRadioBundle"
                                  key="configurable.golden.radio.configurable.display.name"
-                                 instance="com.qqviaja.plugins.GoldenRadioConfigurable">
+                                 instance="com.qqviaja.plugins.ui.GoldenRadioConfigurable">
         </applicationConfigurable>
     </extensions>
 
