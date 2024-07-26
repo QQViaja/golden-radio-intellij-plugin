@@ -7,7 +7,7 @@ import com.intellij.openapi.fileEditor.FileEditorManagerEvent
 import com.intellij.openapi.fileEditor.FileEditorManagerListener
 import com.intellij.openapi.ui.playback.commands.ActionCommand
 import com.intellij.psi.PsiDocumentManager
-import com.qqviaja.plugins.GRSettingsHolder.GRSettings.Companion.getSettings
+import com.qqviaja.plugins.model.GoldenRadioSettingsHolder.GoldenRadioSettings.Companion.getSettings
 
 
 /**

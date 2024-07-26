@@ -13,6 +13,21 @@
 
 ### Security
 
+## [1.7] - 2024-07-26
+### Added
+
+### Changed
+- Change support to 2024.1.
+- Refactor all java code to kotlin.
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [1.6] - 2022-10-10
 ### Added
 - Support auto toggle editor.
@@ -20,14 +35,8 @@
 ### Changed
 - Change support to 221+ for compatibility issues.
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 - Remove deprecated APIs.
-
-### Security
 
 ## [1.5] - 2022-10-08
 ### Added
