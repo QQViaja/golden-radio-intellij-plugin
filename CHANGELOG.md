@@ -13,12 +13,11 @@
 
 ### Security
 
-## [1.7] - 2024-07-26
+## [1.8] - 2024-08-30
 ### Added
 
 ### Changed
-- Change support to 2024.1.
-- Refactor all java code to kotlin.
+- Remove 2 usages of internal API
 
 ### Deprecated
 
@@ -27,6 +26,11 @@
 ### Fixed
 
 ### Security
+
+## [1.7] - 2024-07-26
+### Changed
+- Change support to 2024.1.
+- Refactor all java code to kotlin.
 
 ## [1.6] - 2022-10-10
 ### Added
