@@ -1,5 +1,5 @@
 <idea-plugin require-restart="false">
-    <id>com.qqviaja.plugins.golden-radio-intellij-plugin</id>
+    <id>com.qqviaja.plugins.golden-radio</id>
     <name>Golden Radio</name>
     <vendor email="kimichen13@gmail.com" url="https://kimi.qqviaja.com">QQ Viaja</vendor>
 

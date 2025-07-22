@@ -1,0 +1,1 @@
+rootProject.name = "golden-radio-intellij-plugin"
