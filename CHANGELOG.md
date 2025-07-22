@@ -13,6 +13,23 @@
 
 ### Security
 
+## [2.0.0] - 2025-07-22
+### Added
+
+### Changed
+- Updated compatibility to support IntelliJ 2025.1
+- Upgraded Kotlin to version 2.2.0
+- Migrated to the new IntelliJ Platform Gradle plugin 2.6.0
+- Updated Java compatibility to Java 21
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [1.8] - 2024-08-30
 ### Added
 

@@ -11,7 +11,6 @@ plugins {
     id("org.jetbrains.intellij.platform") version "2.6.0"
 }
 
-// Apply changelog plugin
 apply(plugin = "org.jetbrains.changelog")
 
 group = "com.qqviaja.plugins"
@@ -42,80 +41,28 @@ java {
     }
 }
 
-//configure<KotlinJvmCompilerOptions> {
-//    compilerOptions {
-//        jvmTarget = JvmTarget.JVM_21
-//    }
-//}
-
-//tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-//    compilerOptions {
-//        jvmTarget = JvmTarget.JVM_21
-//    }
-//}
-
 tasks.withType<PatchPluginXmlTask> {
     changeNotes.set(provider {
         changelog.renderItem(
-            changelog.getUnreleased().withHeader(false).withEmptySections(false),
+            changelog.get(project.version.toString()).withHeader(false).withEmptySections(false),
             Changelog.OutputType.HTML
         )
     })
 }
 
-
 intellijPlatform {
-    var projectVersion = project.version.toString()
-    pluginConfiguration {
-        name = "Golden Radio"
-        id = "com.qqviaja.plugins.golden-radio"
-        version = projectVersion
-//        changeNotes = changelog.get(projectVersion).toHTML()
-        ideaVersion {
-            sinceBuild = "251"
-            untilBuild = ""
-        }
-
-    }
+    buildSearchableOptions = true
 }
 
-//intellijPlatform {
-//    pluginConfiguration {
-//        name = "GoldenRadio"
-//        id = "com.qqviaja.plugins.golden-radio"
-////        version = project.version
-////        changeNotes = changelog.get(project.version).toHTML()
-////        ideaVersion {
-////            sinceBuild = "251"
-////            untilBuild = ""
-////        }
-//    }
-//
-//    buildSearchableOptions {
-//        enabled = true
-//    }
-//
-//    runIde {
-//        // Configure IDE run options if needed
-//    }
-//
-//    signPlugin {
-//        // Configure if you need to sign your plugin
-//        // certificateChain = System.getenv("CERTIFICATE_CHAIN")
-//        // privateKey = System.getenv("PRIVATE_KEY")
-//        // password = System.getenv("PRIVATE_KEY_PASSWORD")
-//    }
-//
-//    publishPlugin {
-//        token = System.getProperty("ORG_GRADLE_PROJECT_intellijPublishToken")
-//    }
-//}
+tasks.publishPlugin {
+    token = providers.gradleProperty("intellijPlatformPublishingToken")
+}
 
 changelog {
     version.set(project.version.toString())
     path.set("${project.projectDir}/CHANGELOG.md")
     header.set("[${version.get()}] - ${SimpleDateFormat("yyyy-MM-dd").format(Date())}")
-    headerParserRegex.set("""(\d+\.\d+)""".toRegex())
+    headerParserRegex.set("""(\d+\.\d+(?:\.\d+)?)""".toRegex())
     itemPrefix.set("-")
     keepUnreleasedSection.set(true)
     unreleasedTerm.set("[Unreleased]")

@@ -1,19 +1,18 @@
 <idea-plugin require-restart="false">
-    <id>com.qqviaja.plugins.golden-radio</id>
+    <id>com.qqviaja.plugins.golden-radio-intellij-plugin</id>
     <name>Golden Radio</name>
-    <vendor email="kimichen13@gmail.com" url="https://kimi.qqviaja.com">QQ Viaja</vendor>
+    <vendor email="kimichen13@gmail.com" url="https://618.qqviaja.com">QQ Viaja</vendor>
+
+    <version>2.0.0</version>
+    <idea-version since-build="251"/>
 
     <description><![CDATA[
       Golden Radio is a plugin for IntelliJ IDEA that allows you automatically use golden ratio to split window.
     ]]></description>
 
-    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
-         on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
 
     <resource-bundle>GoldenRadioBundle</resource-bundle>
-    
-<!--    <idea-version since-build="241.0"/>-->
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.qqviaja.plugins.model.GoldenRadioSettingsHolder"/>
@@ -26,7 +25,8 @@
     </extensions>
 
     <applicationListeners>
-        <listener class="com.qqviaja.plugins.GoldenRadioListener" topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+        <listener class="com.qqviaja.plugins.GoldenRadioListener"
+                  topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
     </applicationListeners>
 
     <actions>
