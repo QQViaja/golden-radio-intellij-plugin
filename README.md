@@ -12,7 +12,9 @@
 
 <!-- Plugin Card -->
 <div align="center">
-  <iframe width="384px" height="319px" src="https://plugins.jetbrains.com/embeddable/card/18836"></iframe>
+  <a href="https://plugins.jetbrains.com/plugin/18836-golden-radio">
+    <img src="https://img.shields.io/badge/Install-JetBrains%20Marketplace-blue?style=for-the-badge&logo=jetbrains" alt="Install from JetBrains Marketplace" height="60">
+  </a>
 </div>
 
 A powerful IntelliJ IDEA plugin that automatically applies the golden ratio (φ ≈ 1.618) to editor window splits, creating aesthetically pleasing and visually balanced layouts.
